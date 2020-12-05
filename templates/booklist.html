@@ -9,7 +9,7 @@
   <ul>
 
   {% for b in book %}
-    <li><a href="{% url 'details' b.id %}">{{b.name}}</a></li>
+    <li><a href="{% url 'details' b.id %}">{{b.name}}</a>,-----<a href="{% url 'update' b.id %}">Update</a>----------<a href="{% url 'delete' b.id %}">Del</a> </li>
   {% endfor %}
   </ul>
 </body>

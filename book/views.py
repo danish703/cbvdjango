@@ -3,6 +3,7 @@ from .models import Book
 from django.views import generic
 from django.http import Http404
 from .forms import BookCreateForm
+from django.urls import reverse_lazy
 # Create your views here.
 # def booklist(request):
 #     book  = Book.objects.all()
@@ -68,3 +69,18 @@ class ContactView(generic.View):
             'abc':10
         }
         return render(request,self.template_name,context)
+
+
+class UpdateView(generic.UpdateView):
+    model = Book
+    #fields = ['name','isbn','price','author']
+    form_class = BookCreateForm
+    template_name = 'update.html'
+    success_url = reverse_lazy('booklist')
+
+
+class MyDeleteView(generic.DeleteView):
+    model = Book
+    success_url = reverse_lazy('booklist')
+    # template_name_suffix = '_delete'
+    template_name = 'confirm.html'
